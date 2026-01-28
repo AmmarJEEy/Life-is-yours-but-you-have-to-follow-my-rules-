@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ammar 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;font-family:Arial, sans-serif;overflow:hidden}
+section{display:none;width:100%;height:100%;position:absolute;top:0;left:0;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:20px}
+.show{display:flex}
+button{padding:12px 30px;border:none;border-radius:30px;background:#ff2f7d;color:white;font-size:18px;margin-top:30px;cursor:pointer}
+button:hover{transform:scale(1.05)}
+
+.pink{background:#ffd6e8}
+.big{font-size:42px;color:#b4004e}
+.text{font-size:22px;color:#7a0033;line-height:1.8}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  max-width:700px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2)
+}
+
+/* Decorations */
+.petal{
+  position:absolute;
+  width:10px;height:10px;
+  background:#ff2f7d;
+  border-radius:50%;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh)}
+  to{transform:translateY(110vh)}
+}
+
+/* Images */
+img{
+  max-width:280px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.3)
+}
+
+/* LOVE SCREEN */
+#love{
+  background:black;
+  color:#ff4fd8;
+}
+.heart{
+  position:relative;
+  width:300px;
+  height:260px;
+}
+.heart span{
+  position:absolute;
+  font-size:12px;
+  color:#ff4fd8;
+  animation:float 5s infinite linear;
+}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-20px)}
+  100%{transform:translateY(0)}
+}
+#ammar{
+  position:absolute;
+  top:45%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:42px;
+  color:white;
+  text-shadow:0 0 15px #ff4fd8;
+}
+
+/* Final */
+#final p{
+  font-size:20px;
+  line-height:1.8;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music">
+  <source src="Beyhadh Maya - Love Stuck(M4A_128K).m4a" type="audio/mpeg">
+</audio>
+
+<section id="start" class="pink show">
+  <h1 class="big">Click to Start 💖</h1>
+  <button onclick="start()">Start</button>
+</section>
+
+<section id="count" class="pink">
+  <h1 id="num" class="big">3</h1>
+</section>
+
+<section id="twelve" class="pink">
+  <h1 class="big">Finally it’s 12 AM</h1>
+  <p class="text">The day of your birthday 🎉</p>
+  <button onclick="go('wishes')">Next</button>
+</section>
+
+<section id="wishes" class="pink">
+  <div class="card text">
+    Apka har din khushiyon bhara ho ✨<br>
+    You deserve all the love and smiles 💖
+  </div>
+  <button onclick="go('p1')">Next</button>
+</section>
+
+<section id="p1" class="pink">
+  <div class="card text">
+تجھے روز دیکھوں قریب سے<br>
+میرے شوق بھی ہیں عجیب سے<br><br>
+میں نے مانگا ہے بس تجھی کو<br>
+اپنے رب اور اس کے حبیب سے
+  </div>
+  <button onclick="go('p2')">Next</button>
+</section>
+
+<section id="p2" class="pink">
+  <div class="card text">
+چاند کہوں تو چھپ جاؤ گے<br>
+خواب کہوں تو ٹوٹ جاؤ گے<br>
+چلو آپ کا نام زندگی رکھ دوں<br>
+موت سے پہلے تو نہیں چھوڑ پاؤ گے
+  </div>
+  <button onclick="go('father')">Surprise 🎁</button>
+</section>
+
+<section id="father" class="pink">
+  <img src="IMG-20260126-WA0068.jpg">
+  <p class="text">
+I am thankful to your father for raising you so beautifully.
+  </p>
+  <button onclick="go('ammarPic')">Next</button>
+</section>
+
+<section id="ammarPic" class="pink">
+  <img src="Lumii_20260111_155759958.jpg">
+  <p class="text">My moon, you are the only one 🌙♥️</p>
+  <button onclick="go('love')">Next</button>
+</section>
+
+<section id="love">
+  <div class="heart" id="heart"></div>
+  <div id="ammar">Ammar</div>
+  <button onclick="go('final')">Next</button>
+</section>
+
+<section id="final" class="pink">
+  <div class="card">
+    <p>
+Dear Ammar 💖<br><br>
+Apki zindagi hamesha pyar, sukoon aur kamyabi se bhari rahe.<br>
+Aap meri duaon ka hissa ho aur hamesha rahoge.<br><br>
+Love you endlessly ♥️
+    </p>
+  </div>
+</section>
+
+<script>
+function hideAll(){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('show'));
+}
+function go(id){
+  hideAll();
+  document.getElementById(id).classList.add('show');
+}
+function start(){
+  document.getElementById('music').play();
+  hideAll();
+  document.getElementById('count').classList.add('show');
+  let n=3;
+  let i=setInterval(()=>{
+    document.getElementById('num').innerText=n;
+    n--;
+    if(n<0){
+      clearInterval(i);
+      go('twelve');
+    }
+  },1000);
+}
+
+/* petals */
+for(let i=0;i<40;i++){
+  let p=document.createElement('div');
+  p.className='petal';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=5+Math.random()*5+'s';
+  document.body.appendChild(p);
+}
+
+/* heart */
+const heart=document.getElementById('heart');
+for(let i=0;i<120;i++){
+  let s=document.createElement('span');
+  s.innerText='I LOVE YOU';
+  let t=Math.random()*Math.PI*2;
+  let r=120*(1-Math.sin(t));
+  s.style.left=150+r*Math.cos(t)/2+'px';
+  s.style.top=120+r*Math.sin(t)/2+'px';
+  heart.appendChild(s);
+}
+</script>
+
+</body>
+  </html>
